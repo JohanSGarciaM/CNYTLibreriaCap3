@@ -1,3 +1,5 @@
+import Drill1
+import matplotlib.pyplot as plt
 def multipleSlits(numSlits,numTargets):
     nodos = numSlits+numTargets+1
     matriz = [[0 for i in range(nodos)]for j in range(nodos)]
@@ -7,7 +9,7 @@ def multipleSlits(numSlits,numTargets):
         for j in range(numSlits+1,nodos):
             valor = input("valor de "+str(i)+" a "+str(j)+" : ")
             if valor!='0':
-                matriz[j][i]=int(valor[0])/int(valor[2])
+                matriz[j][i]=round(int(valor[0])/int(valor[2]),2)
             else:
                 matriz[j][i]=0
     for i in range(numSlits+1,nodos):
@@ -17,10 +19,23 @@ def multipleSlits(numSlits,numTargets):
 
 
 def main():
+    click = int(input("Ingrese el numero de clicks : "))
     numSlits = int(input("ingrese numero de slits : "))
     numTargets = int(input("write the number of targets: "))
-    for i in multipleSlits(numSlits,numTargets):
+    Istate = [0 for i in range(numSlits+numTargets+1)]
+    Istate[0]=1
+    matriz = multipleSlits(numSlits,numTargets)
+    final = Drill1.marble(matriz,Istate,click)
+    print("La matriz resultante es :")
+    for i in matriz:
         print(i)
+    print()
+    print("El vector resultante es : ")
+    print(final)
+    plt.bar([i for i in range(len(final))],final)
+    plt.show()
 
-main()
-    
+if __name__=='__main__':
+    main()
+
+

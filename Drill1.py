@@ -18,4 +18,5 @@ def main():
     clicks = int(input("please enter number of clicks"))
     print(marble(M,Istate,clicks))
 
-main()
+if __name__ == "__main__":
+    main()
